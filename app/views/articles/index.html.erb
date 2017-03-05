@@ -1,0 +1,30 @@
+<h1>List of articles</h1>
+
+<%= link_to 'New article', new_article_path %>
+<br><br>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Name</th>
+    <th>Text</th>
+    <th colspan="2">Options</th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= truncate(article.title, length:20, separator:" ") %></td>
+      <td><%= truncate(article.name, length:20, separator:" ") %></td>
+      <td><%= truncate(article.text, length:325, separator:" ") %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br><br><br>
+<hr>
+<div class="navigation">
+  <%= link_to 'Home', root_path %>
+</div>
+
