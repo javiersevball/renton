@@ -14,6 +14,8 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+# Note: ActiveRecord::RecordNotFound exception is handled automatically in the production environment (404.html)
+
 class ArticlesController < ApplicationController
     def new
         @article = Article.new
@@ -51,9 +53,17 @@ class ArticlesController < ApplicationController
         end
     end
     
+    def destroy
+        @article = Article.find(params[:id])
+        @article.destroy
+        
+        redirect_to articles_path
+    end
+    
+    
     private
-        def article_params
-            params.require(:article).permit(:title, :name, :text)
-        end
+    def article_params
+        params.require(:article).permit(:title, :name, :text)
+    end
 end
 

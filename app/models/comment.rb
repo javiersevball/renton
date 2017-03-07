@@ -14,13 +14,9 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Rails.application.routes.draw do
-    # get 'welcome/index'
-  
-    resources :articles do
-        resources :comments
-    end
-  
-    root 'welcome#index'
+class Comment < ActiveRecord::Base
+    belongs_to :article
+    
+    validates :commenter, presence:true, length:{maximum: 100}
+    validates :body, presence:true, length:{maximum: 3500}
 end
-

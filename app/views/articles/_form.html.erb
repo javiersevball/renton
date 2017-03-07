@@ -1,0 +1,32 @@
+<%= form_for(@article) do |form| %>
+    <% if @article.errors.any? %>
+        <div class="error_explanation">
+            <%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:
+            <ul>
+                <% @article.errors.full_messages.each do |msg| %>
+                    <li><%= msg %>.</li>
+                <% end %>
+            </ul>
+            <br>
+        </div>
+    <% end %>
+    
+    <div class="article_form">
+        <div class="form_text_item">
+            <%= form.label :title %>
+            <%= form.text_field :title, autocomplete:"off" %>
+        </div>
+
+        <div class="form_text_item">
+            <%= form.label :name %>
+            <%= form.text_field :name, autocomplete:"off" %>
+        </div>
+
+        <div class="form_text_item">
+            <%= form.label :text %>
+            <%= form.text_area :text %>
+        </div>
+        
+        <%= form.submit %>
+    </div>
+<% end %>

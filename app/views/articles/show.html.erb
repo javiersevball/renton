@@ -1,5 +1,4 @@
-<%= link_to 'Edit', edit_article_path %>
-
+<%= link_to 'Edit', edit_article_path(@article) %> &#124; Last updated: <%= @article.updated_at.localtime.to_formatted_s(:long) %>
 
 <h1><%= @article.title %></h1>
 
@@ -10,10 +9,25 @@
 <div class="show_article_section">
   <%= simple_format @article.text %>
 </div>
+<br>
+
+<h2>Comments</h2>
+<% if @article.comments.any? %>
+  <%# The render method iterates over the @article.comments collection. %>
+  <%# It assigns each 'item' to a local variable named the same ast the partial HTML file (comment) %>
+  
+  <%= render @article.comments %>
+<% else %>
+  <div class="comment">
+    There are no comments for this article.
+  </div>
+<% end %>
+
+<%= link_to 'Add your comment', new_article_comment_path(@article), class: "button" %>
 
 <br><br><br>
 <hr>
 <div class="navigation">
-  <%= link_to 'List of articles', articles_path %> | <%= link_to 'Home', root_path %>
+  <%= link_to 'List of articles', articles_path %> &#124; <%= link_to 'Home', root_path %>
 </div>
 

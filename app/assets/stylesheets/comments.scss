@@ -1,0 +1,21 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment_form input[type="text"] {
+    width: 500px;
+}
+
+.comment_form textarea {
+    width: 500px;
+    height: 150px;
+}
+
+.comment {
+    padding-bottom: 15px;
+}
+
+.comment_content {
+    padding-left: 30px;
+}
+

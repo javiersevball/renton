@@ -1,4 +1,6 @@
-<h1>Edit article</h1>
+<%= link_to 'Back', article_path(@article) %>
+
+<h1>Add a comment to "<%= @article.title %>"</h1>
 
 <%= render 'form' %>
 
@@ -7,5 +9,6 @@
 <div class="navigation">
   <%= link_to 'List of articles', articles_path %> &#124; <%= link_to 'Home', root_path %>
 </div>
+
 
 

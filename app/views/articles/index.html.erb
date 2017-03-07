@@ -8,7 +8,7 @@
     <th>Title</th>
     <th>Name</th>
     <th>Text</th>
-    <th colspan="2">Options</th>
+    <th colspan="3">Options</th>
   </tr>
  
   <% @articles.each do |article| %>
@@ -18,6 +18,7 @@
       <td><%= truncate(article.text, length:325, separator:" ") %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
       <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'} %></td>
     </tr>
   <% end %>
 </table>

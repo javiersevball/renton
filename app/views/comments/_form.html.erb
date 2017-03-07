@@ -1,0 +1,42 @@
+<%= form_for([@article, @comment]) do |form| %>
+  <% if @comment && @comment.errors.any? %>
+    <div class="error_explanation">
+      <%= pluralize(@comment.errors.count, "error") %> prohibited this article from being published:
+      <ul>
+        <% @comment.errors.messages.each do |errorMsg| %>
+          <% if errorMsg[0] == :commenter %>
+            <li>Name <%= errorMsg[1][0] %>.</li>
+          <% else %>
+            <% if errorMsg[0] == :body %>
+              <li>Comment <%= errorMsg[1][0] %>.</li>
+            <% else %>
+              <li><%= errorMsg[0] %> <%= errorMsg[1][0] %>.</li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+      <br>
+    </div>
+  <% end %>
+  
+  <div class="comment_form">
+    <div class="form_text_item">
+      <%= form.label :commenter, 'Your name' %>
+      <% if !@commenterError %>
+        <br>
+      <% end %>
+      <%= form.text_field :commenter, autocomplete:"off" %>
+    </div>
+    
+    <div class="form_text_item">
+      <%= form.label :body, 'Your comment' %>
+      <% if !@bodyError %>
+        <br>
+      <% end %>
+      <%= form.text_area :body %>
+    </div>
+  </div>
+  
+  <%= form.submit 'Add comment' %>
+<% end %>
+
