@@ -15,6 +15,9 @@
 
 
 class CommentsController < ApplicationController
+    before_action(:authenticate, only: :destroy)
+    
+
     def new
         @article = Article.find(params[:article_id])
         @comment = Comment.new
@@ -54,6 +57,16 @@ class CommentsController < ApplicationController
     private
     def comment_params
         params.require(:comment).permit(:commenter, :body)
+    end
+    
+    def authenticate
+        authenticate_or_request_with_http_digest(Rails.application.config.realm) do |username|
+            user = User.find_by(name: username, admin: true)
+            
+            if user
+                user.password
+            end
+        end
     end
 end
 

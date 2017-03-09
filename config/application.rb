@@ -22,5 +22,8 @@ module Blog
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # REALM value for http authentication
+    config.realm = "renton_admins"
   end
 end

@@ -16,7 +16,12 @@
 
 # Note: ActiveRecord::RecordNotFound exception is handled automatically in the production environment (404.html)
 
+require 'digest/md5'
+
 class ArticlesController < ApplicationController
+    before_action(:authenticate, except: [:index, :show])
+    
+
     def new
         @article = Article.new
     end
@@ -64,6 +69,16 @@ class ArticlesController < ApplicationController
     private
     def article_params
         params.require(:article).permit(:title, :name, :text)
+    end
+    
+    def authenticate
+        authenticate_or_request_with_http_digest(Rails.application.config.realm) do |username|
+            user = User.find_by(name: username, admin: true)
+            
+            if user
+                user.password
+            end
+        end
     end
 end
 
