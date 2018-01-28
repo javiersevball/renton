@@ -29,5 +29,5 @@ The default login is admin:password
 
 This application uses HTTP Digest in the authentication process, applying a hash function to the password before sending it over the network.
 
-However, the rest of information is sended as a plain text, so its highly recommendable to use HTTPS (TLS/SSL in transport layer) if its possible. Using HTTPS, HTTP Digest can be replaced by HTTP Basic Authentication. 
+However, the rest of information is sent as a plain text, so its highly recommendable to use HTTPS (TLS/SSL in transport layer) if its possible. Using HTTPS, HTTP Digest can be replaced by HTTP Basic Authentication. 
 
